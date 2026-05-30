@@ -268,14 +268,15 @@
 
 ### 10-1. 使用予定の技術
 
-- フレームワーク：Ruby on Rails
-- DB：PostgreSQL
+- Ruby：3.3.6
+- フレームワーク：Ruby on Rails 7.2.3
+- DB：PostgreSQL 16
 - デプロイ先：Render
-- CSSフレームワーク：Bootstrap
-- 認証：Sorcery
+- CSSフレームワーク：Bootstrap 5.3.8
+- 認証：Sorcery 0.18.0
 - その他使用予定ライブラリ：
-  - Ransack
-  - Kaminari
+  - Ransack 4.3.0
+  - Kaminari 1.2.2
 
 ### 10-2. 技術選定の理由
 
