@@ -4,7 +4,8 @@
 
 ```mermaid
 erDiagram
-  users ||--o{ travel_expense_memos : "has many"
+  users ||--o{ destinations : "has many"
+  destinations ||--o{ travel_expense_memos : "has many"
 
   users {
     bigint id PK
@@ -16,10 +17,17 @@ erDiagram
     datetime updated_at
   }
 
-  travel_expense_memos {
+  destinations {
     bigint id PK
     bigint user_id FK
-    string destination_name "訪問先名"
+    string name "訪問先名"
+    datetime created_at
+    datetime updated_at
+  }
+
+  travel_expense_memos {
+    bigint id PK
+    bigint destination_id FK
     string departure_place "出発地"
     string arrival_place "到着地"
     integer one_way_fare "片道料金"
@@ -44,15 +52,28 @@ erDiagram
 | created_at | datetime | 作成日時、NOT NULL |
 | updated_at | datetime | 更新日時、NOT NULL |
 
-### travel_expense_memos
+### destinations
 
-訪問先ごとの交通費メモを保存するテーブルです。
+訪問先を保存するテーブルです。
+
+同じ訪問先に対して複数の出発地・到着地・片道料金を登録できるようにするため、訪問先名は交通費メモから切り出して管理します。MVPでは実装範囲を広げすぎないため、住所や顧客情報などの詳細は持たせず、訪問先名のみを保存します。
 
 | カラム名 | 型 | 制約・用途 |
 | --- | --- | --- |
 | id | bigint | 主キー |
 | user_id | bigint | usersテーブルの外部キー、NOT NULL |
-| destination_name | string | 訪問先名、NOT NULL |
+| name | string | 訪問先名、NOT NULL |
+| created_at | datetime | 作成日時、NOT NULL |
+| updated_at | datetime | 更新日時、NOT NULL |
+
+### travel_expense_memos
+
+訪問先に紐づく交通費メモを保存するテーブルです。
+
+| カラム名 | 型 | 制約・用途 |
+| --- | --- | --- |
+| id | bigint | 主キー |
+| destination_id | bigint | destinationsテーブルの外部キー、NOT NULL |
 | departure_place | string | 出発地、NOT NULL |
 | arrival_place | string | 到着地、NOT NULL |
 | one_way_fare | integer | 片道料金、NOT NULL |
@@ -61,9 +82,12 @@ erDiagram
 
 ## リレーション
 
-- users 1 : 0..N travel_expense_memos
-- 1人のユーザーは0件以上の交通費メモを登録できます。
-- 1つの交通費メモは必ず1人のユーザーに紐づきます。
+- users 1 : 0..N destinations
+- 1人のユーザーは0件以上の訪問先を登録できます。
+- 1つの訪問先は必ず1人のユーザーに紐づきます。
+- destinations 1 : 0..N travel_expense_memos
+- 1つの訪問先には0件以上の交通費メモを登録できます。
+- 1つの交通費メモは必ず1つの訪問先に紐づきます。
 
 ## ER図に含めないもの
 
