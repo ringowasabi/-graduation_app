@@ -64,7 +64,6 @@
   <path class="relation" d="M500 385 L590 385"/>
   <text x="525" y="357" class="note">1</text>
   <text x="560" y="357" class="note">0..N</text>
-  <text x="500" y="425" class="note">users 1 : 0..N destinations</text>
   <path class="relation" d="M515 365 L515 405"/>
   <path class="relation" d="M530 365 L530 405"/>
   <circle cx="555" cy="385" r="10" stroke="#334155" stroke-width="3" fill="#f8fafc"/>
@@ -76,7 +75,6 @@
   <path class="relation" d="M980 385 L1070 385"/>
   <text x="1005" y="357" class="note">1</text>
   <text x="1040" y="357" class="note">0..N</text>
-  <text x="970" y="425" class="note">destinations 1 : 0..N travel_expense_memos</text>
   <path class="relation" d="M995 365 L995 405"/>
   <path class="relation" d="M1010 365 L1010 405"/>
   <circle cx="1035" cy="385" r="10" stroke="#334155" stroke-width="3" fill="#f8fafc"/>
