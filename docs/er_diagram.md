@@ -61,8 +61,8 @@ erDiagram
 
 ## リレーション
 
-- users 1 : N travel_expense_memos
-- 1人のユーザーは複数の交通費メモを登録できます。
+- users 1 : 0..N travel_expense_memos
+- 1人のユーザーは0件以上の交通費メモを登録できます。
 - 1つの交通費メモは必ず1人のユーザーに紐づきます。
 
 ## ER図に含めないもの

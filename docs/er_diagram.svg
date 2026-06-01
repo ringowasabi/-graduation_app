@@ -49,15 +49,19 @@
     <text x="28" y="380" class="col">updated_at : datetime NOT NULL</text>
   </g>
 
-  <!-- relation -->
+  <!-- relation: users 1 : 0..N travel_expense_memos -->
   <path class="relation" d="M540 380 L760 380"/>
-  <text x="575" y="352" class="note">1</text>
-  <text x="720" y="352" class="note">多</text>
-  <text x="598" y="410" class="note">users 1 : N travel_expense_memos</text>
+  <text x="568" y="352" class="note">1</text>
+  <text x="714" y="352" class="note">0..N</text>
+  <text x="582" y="410" class="note">1人のユーザーは0件以上の交通費メモを持つ</text>
 
-  <!-- crow's foot style marks -->
-  <path class="relation" d="M738 365 L760 380 L738 395"/>
-  <path class="relation" d="M555 365 L555 395"/>
+  <!-- cardinality marks -->
+  <path class="relation" d="M555 360 L555 400"/>
+  <path class="relation" d="M570 360 L570 400"/>
+  <circle cx="715" cy="380" r="10" stroke="#334155" stroke-width="3" fill="#f8fafc"/>
+  <path class="relation" d="M730 380 L760 380"/>
+  <path class="relation" d="M730 380 L760 360"/>
+  <path class="relation" d="M730 380 L760 400"/>
 
   <!-- notes -->
   <g transform="translate(90 650)">
