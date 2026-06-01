@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="760" viewBox="0 0 1300 760">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px sans-serif; fill: #475569; }
+      .table { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 12; }
+      .table-head { fill: #dbeafe; stroke: #334155; stroke-width: 2; rx: 12; }
+      .table-name { font: 700 24px sans-serif; fill: #0f172a; }
+      .col { font: 16px monospace; fill: #0f172a; }
+      .note { font: 15px sans-serif; fill: #475569; }
+      .relation { stroke: #334155; stroke-width: 3; fill: none; }
+      .card { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 12; }
+      .card-title { font: 700 18px sans-serif; fill: #9a3412; }
+      .card-text { font: 15px sans-serif; fill: #7c2d12; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1300" height="760"/>
+  <text x="60" y="60" class="title">いつもの交通費メモ ER図</text>
+  <text x="60" y="94" class="subtitle">MVPでは、ユーザーと交通費メモの2テーブルで構成します。</text>
+
+  <!-- users table -->
+  <g transform="translate(90 170)">
+    <rect class="table" width="450" height="420"/>
+    <rect class="table-head" width="450" height="66"/>
+    <text x="28" y="42" class="table-name">users</text>
+    <text x="28" y="100" class="col">id : bigint PK</text>
+    <text x="28" y="140" class="col">name : string NOT NULL</text>
+    <text x="28" y="180" class="col">email : string NOT NULL UNIQUE</text>
+    <text x="28" y="220" class="col">crypted_password : string NOT NULL</text>
+    <text x="28" y="260" class="col">salt : string NOT NULL</text>
+    <text x="28" y="300" class="col">created_at : datetime NOT NULL</text>
+    <text x="28" y="340" class="col">updated_at : datetime NOT NULL</text>
+  </g>
+
+  <!-- travel_expense_memos table -->
+  <g transform="translate(760 150)">
+    <rect class="table" width="470" height="470"/>
+    <rect class="table-head" width="470" height="66"/>
+    <text x="28" y="42" class="table-name">travel_expense_memos</text>
+    <text x="28" y="100" class="col">id : bigint PK</text>
+    <text x="28" y="140" class="col">user_id : bigint FK NOT NULL</text>
+    <text x="28" y="180" class="col">destination_name : string NOT NULL</text>
+    <text x="28" y="220" class="col">departure_place : string NOT NULL</text>
+    <text x="28" y="260" class="col">arrival_place : string NOT NULL</text>
+    <text x="28" y="300" class="col">one_way_fare : integer NOT NULL</text>
+    <text x="28" y="340" class="col">created_at : datetime NOT NULL</text>
+    <text x="28" y="380" class="col">updated_at : datetime NOT NULL</text>
+  </g>
+
+  <!-- relation -->
+  <path class="relation" d="M540 380 L760 380"/>
+  <text x="575" y="352" class="note">1</text>
+  <text x="720" y="352" class="note">多</text>
+  <text x="598" y="410" class="note">users 1 : N travel_expense_memos</text>
+
+  <!-- crow's foot style marks -->
+  <path class="relation" d="M738 365 L760 380 L738 395"/>
+  <path class="relation" d="M555 365 L555 395"/>
+
+  <!-- notes -->
+  <g transform="translate(90 650)">
+    <rect class="card" width="1140" height="70"/>
+    <text x="24" y="30" class="card-title">ER図に含めないもの</text>
+    <text x="24" y="55" class="card-text">往復料金は片道料金から自動計算して表示します。応援メッセージ画像は登録完了後の固定表示のため、DBには保存しません。</text>
+  </g>
+</svg>
