@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px sans-serif; fill: #475569; }
+      .section { font: 700 22px sans-serif; fill: #1e293b; }
+      .screen { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; rx: 14; }
+      .screen-title { font: 700 19px sans-serif; fill: #0f172a; }
+      .small { font: 14px sans-serif; fill: #475569; }
+      .label { font: 13px sans-serif; fill: #334155; }
+      .header { fill: #e0f2fe; stroke: #7dd3fc; stroke-width: 1; rx: 6; }
+      .footer { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1; rx: 6; }
+      .button { fill: #dbeafe; stroke: #60a5fa; stroke-width: 1.5; rx: 7; }
+      .danger { fill: #fee2e2; stroke: #f87171; stroke-width: 1.5; rx: 7; }
+      .input { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 5; }
+      .card { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1; rx: 8; }
+      .message { fill: #fff7ed; stroke: #fb923c; stroke-width: 2; rx: 12; }
+      .arrow { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .arrow-note { font: 13px sans-serif; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1800" height="1500"/>
+  <text x="60" y="62" class="title">いつもの交通費メモ 画面遷移図</text>
+  <text x="60" y="96" class="subtitle">保険営業マンなど外回りの仕事で、よく訪問する顧客先の交通費をすぐ確認するためのMVP画面構成</text>
+
+  <text x="60" y="150" class="section">未ログイン時</text>
+  <text x="60" y="760" class="section">ログイン後</text>
+
+  <!-- Top page -->
+  <g id="top" transform="translate(60 180)">
+    <rect class="screen" width="300" height="430"/>
+    <text x="24" y="36" class="screen-title">トップページ</text>
+    <rect x="20" y="58" width="260" height="42" class="header"/>
+    <text x="34" y="84" class="small">ヘッダー：アプリ名</text>
+    <rect x="24" y="125" width="252" height="88" class="card"/>
+    <text x="38" y="153" class="small">サービス概要</text>
+    <text x="38" y="178" class="small">交通費をすぐ見返す</text>
+    <rect x="42" y="240" width="216" height="38" class="button"/>
+    <text x="98" y="264" class="label">新規登録</text>
+    <rect x="42" y="294" width="216" height="38" class="button"/>
+    <text x="110" y="318" class="label">ログイン</text>
+    <rect x="20" y="366" width="260" height="42" class="footer"/>
+    <text x="40" y="392" class="small">利用規約 / プライバシー</text>
+  </g>
+
+  <!-- Signup -->
+  <g id="signup" transform="translate(470 160)">
+    <rect class="screen" width="300" height="470"/>
+    <text x="24" y="36" class="screen-title">ユーザー登録画面</text>
+    <rect x="24" y="70" width="252" height="34" class="input"/>
+    <text x="38" y="92" class="label">名前</text>
+    <rect x="24" y="118" width="252" height="34" class="input"/>
+    <text x="38" y="140" class="label">メールアドレス</text>
+    <rect x="24" y="166" width="252" height="34" class="input"/>
+    <text x="38" y="188" class="label">パスワード</text>
+    <rect x="24" y="214" width="252" height="34" class="input"/>
+    <text x="38" y="236" class="label">パスワード確認</text>
+    <rect x="42" y="280" width="216" height="38" class="button"/>
+    <text x="103" y="304" class="label">登録する</text>
+    <text x="76" y="356" class="small">ログインはこちら</text>
+  </g>
+
+  <!-- Login -->
+  <g id="login" transform="translate(470 770)">
+    <rect class="screen" width="300" height="360"/>
+    <text x="24" y="36" class="screen-title">ログイン画面</text>
+    <rect x="24" y="78" width="252" height="34" class="input"/>
+    <text x="38" y="100" class="label">メールアドレス</text>
+    <rect x="24" y="132" width="252" height="34" class="input"/>
+    <text x="38" y="154" class="label">パスワード</text>
+    <rect x="42" y="205" width="216" height="38" class="button"/>
+    <text x="105" y="229" class="label">ログイン</text>
+    <text x="76" y="286" class="small">新規登録はこちら</text>
+  </g>
+
+  <!-- Static pages -->
+  <g id="terms" transform="translate(60 650)">
+    <rect class="screen" width="300" height="120"/>
+    <text x="24" y="38" class="screen-title">利用規約ページ</text>
+    <text x="24" y="76" class="small">フッターから遷移</text>
+  </g>
+  <g id="privacy" transform="translate(60 810)">
+    <rect class="screen" width="300" height="120"/>
+    <text x="24" y="38" class="screen-title">プライバシーポリシー</text>
+    <text x="24" y="76" class="small">フッターから遷移</text>
+  </g>
+
+  <!-- Index -->
+  <g id="index" transform="translate(910 160)">
+    <rect class="screen" width="380" height="520"/>
+    <text x="24" y="36" class="screen-title">交通費メモ一覧画面</text>
+    <rect x="20" y="58" width="340" height="42" class="header"/>
+    <text x="34" y="84" class="small">一覧 / 新規登録 / ログアウト</text>
+    <rect x="30" y="124" width="320" height="58" class="card"/>
+    <text x="44" y="149" class="small">活動先A</text>
+    <text x="44" y="171" class="label">片道 320円 / 往復 640円</text>
+    <rect x="38" y="197" width="84" height="30" class="button"/>
+    <text x="66" y="217" class="label">詳細</text>
+    <rect x="148" y="197" width="84" height="30" class="button"/>
+    <text x="176" y="217" class="label">編集</text>
+    <rect x="258" y="197" width="84" height="30" class="danger"/>
+    <text x="286" y="217" class="label">削除</text>
+    <rect x="30" y="255" width="320" height="58" class="card"/>
+    <text x="44" y="280" class="small">活動先B</text>
+    <text x="44" y="302" class="label">片道 450円 / 往復 900円</text>
+    <rect x="62" y="362" width="256" height="42" class="button"/>
+    <text x="118" y="388" class="label">新しい交通費メモを登録</text>
+    <rect x="62" y="426" width="256" height="34" class="button"/>
+    <text x="145" y="448" class="label">ログアウト</text>
+  </g>
+
+  <!-- New memo -->
+  <g id="new" transform="translate(1430 80)">
+    <rect class="screen" width="310" height="430"/>
+    <text x="24" y="36" class="screen-title">交通費メモ新規登録</text>
+    <rect x="24" y="72" width="262" height="34" class="input"/>
+    <text x="38" y="94" class="label">訪問先名</text>
+    <rect x="24" y="124" width="262" height="34" class="input"/>
+    <text x="38" y="146" class="label">出発地</text>
+    <rect x="24" y="176" width="262" height="34" class="input"/>
+    <text x="38" y="198" class="label">到着地</text>
+    <rect x="24" y="228" width="262" height="34" class="input"/>
+    <text x="38" y="250" class="label">片道料金</text>
+    <rect x="47" y="302" width="216" height="38" class="button"/>
+    <text x="108" y="326" class="label">登録する</text>
+    <text x="105" y="376" class="small">一覧へ戻る</text>
+  </g>
+
+  <!-- Completion -->
+  <g id="complete" transform="translate(1430 590)">
+    <rect class="screen" width="310" height="400"/>
+    <text x="24" y="36" class="screen-title">登録完了・応援画面</text>
+    <rect x="26" y="76" width="258" height="112" class="message"/>
+    <text x="48" y="116" class="small">登録完了！</text>
+    <text x="48" y="145" class="small">今日の営業も</text>
+    <text x="48" y="174" class="small">がんばりましょう！</text>
+    <rect x="54" y="220" width="202" height="58" class="card"/>
+    <text x="93" y="254" class="small">応援メッセージ画像</text>
+    <rect x="47" y="310" width="216" height="34" class="button"/>
+    <text x="112" y="332" class="label">一覧へ戻る</text>
+    <rect x="47" y="356" width="216" height="34" class="button"/>
+    <text x="103" y="378" class="label">続けて登録する</text>
+  </g>
+
+  <!-- Detail -->
+  <g id="detail" transform="translate(910 810)">
+    <rect class="screen" width="380" height="420"/>
+    <text x="24" y="36" class="screen-title">交通費メモ詳細画面</text>
+    <rect x="28" y="70" width="324" height="178" class="card"/>
+    <text x="48" y="105" class="small">訪問先名：活動先A</text>
+    <text x="48" y="137" class="small">出発地：自宅最寄り駅</text>
+    <text x="48" y="169" class="small">到着地：活動先A最寄り駅</text>
+    <text x="48" y="201" class="small">片道料金：320円</text>
+    <text x="48" y="233" class="small">往復料金：640円</text>
+    <rect x="38" y="285" width="92" height="34" class="button"/>
+    <text x="67" y="307" class="label">編集</text>
+    <rect x="144" y="285" width="92" height="34" class="danger"/>
+    <text x="173" y="307" class="label">削除</text>
+    <rect x="250" y="285" width="92" height="34" class="button"/>
+    <text x="263" y="307" class="label">一覧へ戻る</text>
+  </g>
+
+  <!-- Edit -->
+  <g id="edit" transform="translate(1430 1080)">
+    <rect class="screen" width="310" height="360"/>
+    <text x="24" y="36" class="screen-title">交通費メモ編集画面</text>
+    <rect x="24" y="70" width="262" height="30" class="input"/>
+    <text x="38" y="90" class="label">訪問先名</text>
+    <rect x="24" y="112" width="262" height="30" class="input"/>
+    <text x="38" y="132" class="label">出発地</text>
+    <rect x="24" y="154" width="262" height="30" class="input"/>
+    <text x="38" y="174" class="label">到着地</text>
+    <rect x="24" y="196" width="262" height="30" class="input"/>
+    <text x="38" y="216" class="label">片道料金</text>
+    <rect x="47" y="252" width="216" height="34" class="button"/>
+    <text x="112" y="274" class="label">更新する</text>
+    <text x="72" y="322" class="small">詳細へ戻る / 一覧へ戻る</text>
+  </g>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M360 330 C410 330 420 280 470 280"/>
+  <text x="383" y="305" class="arrow-note">新規登録</text>
+  <path class="arrow" d="M360 390 C410 390 420 910 470 920"/>
+  <text x="382" y="646" class="arrow-note">ログイン</text>
+  <path class="arrow" d="M210 610 L210 650"/>
+  <path class="arrow" d="M250 610 C320 675 320 810 360 850"/>
+  <path class="arrow" d="M770 300 C820 300 850 330 910 340"/>
+  <text x="794" y="287" class="arrow-note">登録成功</text>
+  <path class="arrow" d="M770 950 C830 950 850 440 910 420"/>
+  <text x="795" y="698" class="arrow-note">ログイン成功</text>
+  <path class="arrow" d="M1290 350 C1345 350 1370 250 1430 250"/>
+  <text x="1325" y="296" class="arrow-note">新規登録</text>
+  <path class="arrow" d="M1585 510 L1585 590"/>
+  <text x="1600" y="554" class="arrow-note">登録成功</text>
+  <path class="arrow" d="M1430 785 C1370 760 1345 600 1290 560"/>
+  <text x="1325" y="717" class="arrow-note">一覧へ戻る</text>
+  <path class="arrow" d="M1430 895 C1365 910 1345 970 1290 1010"/>
+  <text x="1325" y="944" class="arrow-note">一覧/詳細へ</text>
+  <path class="arrow" d="M1290 515 C1345 515 1370 1235 1430 1260"/>
+  <text x="1320" y="893" class="arrow-note">編集</text>
+  <path class="arrow" d="M1290 1015 C1350 1015 1365 1235 1430 1250"/>
+  <text x="1320" y="1130" class="arrow-note">編集</text>
+  <path class="arrow" d="M1430 1260 C1360 1260 1330 1110 1290 1040"/>
+  <text x="1325" y="1218" class="arrow-note">更新成功</text>
+  <path class="arrow" d="M1090 680 L1090 810"/>
+  <text x="1105" y="750" class="arrow-note">詳細</text>
+  <path class="arrow" d="M1060 810 C1030 760 1030 720 1060 680"/>
+  <text x="970" y="748" class="arrow-note">一覧へ戻る</text>
+  <path class="arrow" d="M1090 1230 C1070 1300 965 1320 955 700"/>
+  <text x="970" y="1300" class="arrow-note">削除後一覧へ</text>
+  <path class="arrow" d="M910 540 C840 540 825 1130 770 1030"/>
+  <text x="802" y="1100" class="arrow-note">ログアウト</text>
+</svg>
