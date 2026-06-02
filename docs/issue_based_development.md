@@ -11,7 +11,7 @@
 - 1週間あたりに消化できる目安：7ストーリーポイント
 
 ### ProjectsのURL
-<GitHub ProjectsのURLをここに貼る>
+https://github.com/users/ringowasabi/projects/1
 
 ### MVPリリースまで
 - Railsアプリの作成
@@ -107,9 +107,25 @@
  
 ## Projects作成時の確認リスト
 
-- [ ] GitHub ProjectsをPublicにする
-- [ ] ストーリーポイント用のNumberフィールドを追加する
-- [ ] 各列でストーリーポイントの合計が表示されるようにする
-- [ ] すべてのIssueにストーリーポイントを設定する
-- [ ] MVPリリースまでのIssueを週ごとの列に配置する
-- [ ] MVP後のIssueを「MVPリリース後に実装予定」列に配置する
+- [x] GitHub ProjectsをPublicにする
+- [x] ストーリーポイント用のNumberフィールドを追加する
+- [x] すべてのIssueにストーリーポイントを設定する
+- [x] MVPリリースまでのIssueに開発週を設定する
+- [x] MVP後のIssueを「MVPリリース後に実装予定」に設定する
+- [ ] Project画面で `Group by` を `開発週` に変更し、週ごとの看板として表示する
+- [ ] Project画面で `Field sum` から `ストーリーポイント` を選択し、各列の合計を表示する
+
+## GitHub Projectsの作成結果
+
+- Projects URL：https://github.com/users/ringowasabi/projects/1
+- 提出用Issue URL：https://github.com/ringowasabi/-graduation_app/issues/26
+- 公開設定：Public
+- 作成済みIssue数：22件
+- 追加済みフィールド
+  - ストーリーポイント（Number）
+  - 開発週（Single select）
+
+CLIではProject Viewの表示形式までは変更できないため、GitHub Projects画面で以下を設定します。
+
+- `Group by` を `開発週` に変更する
+- `Field sum` で `ストーリーポイント` を選択する
