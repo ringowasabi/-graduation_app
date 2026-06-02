@@ -322,3 +322,11 @@ MVPでは、ReactやNext.jsなどの新しい技術は使わず、RailsとBootst
 ## 11. 画面遷移図
 
 Figma：https://www.figma.com/design/hdljCSjcbJIouyVpJXVvWE/%E7%84%A1%E9%A1%8C?node-id=18-239&t=BsDKbql2YcU9MCZL-1
+
+---
+
+## 12. ER図
+
+ER図：[docs/er_diagram.md](docs/er_diagram.md)
+
+ER図画像：[docs/er_diagram.svg](docs/er_diagram.svg)
