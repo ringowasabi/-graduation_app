@@ -23,6 +23,7 @@ erDiagram
     string name "訪問先名"
     datetime created_at
     datetime updated_at
+    index user_id_name_unique "UNIQUE(user_id, name)"
   }
 
   travel_expense_memos {
@@ -65,6 +66,12 @@ erDiagram
 | name | string | 訪問先名、NOT NULL |
 | created_at | datetime | 作成日時、NOT NULL |
 | updated_at | datetime | 更新日時、NOT NULL |
+
+制約：
+
+- `user_id` と `name` の組み合わせにユニーク制約を設定します。
+- 同じユーザーが同じ訪問先名を重複登録できないようにします。
+- 別のユーザーであれば、同じ訪問先名を登録できます。
 
 ### travel_expense_memos
 

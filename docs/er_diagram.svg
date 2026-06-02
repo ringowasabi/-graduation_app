@@ -36,7 +36,7 @@
 
   <!-- destinations table -->
   <g transform="translate(590 220)">
-    <rect class="table" width="390" height="330"/>
+    <rect class="table" width="390" height="360"/>
     <rect class="table-head" width="390" height="66"/>
     <text x="28" y="42" class="table-name">destinations</text>
     <text x="28" y="100" class="col">id : bigint PK</text>
@@ -44,6 +44,7 @@
     <text x="28" y="180" class="col">name : string NOT NULL</text>
     <text x="28" y="220" class="col">created_at : datetime NOT NULL</text>
     <text x="28" y="260" class="col">updated_at : datetime NOT NULL</text>
+    <text x="28" y="300" class="col">UNIQUE(user_id, name)</text>
   </g>
 
   <!-- travel_expense_memos table -->
