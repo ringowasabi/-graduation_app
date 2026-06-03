@@ -87,7 +87,7 @@ https://github.com/users/ringowasabi/projects/1
 
 ## Issue本文テンプレート
 
-実際に作成したIssueでは、以下の共通文をそのまま使わず、Issueごとの対象画面・モデル・ルーティング・完了条件が分かるように個別に記載しています。
+実際に登録したIssueでは、以下の共通文をそのまま使わず、Issueごとの対象画面・モデル・ルーティング・完了条件が分かるように個別に記載しています。
 
 ```md
 ## 概要
@@ -107,7 +107,7 @@ https://github.com/users/ringowasabi/projects/1
 ポイント：
 ```
  
-## Projects作成時の確認リスト
+## Projects設定時の確認リスト
 
 - [x] GitHub ProjectsをPublicにする
 - [x] ストーリーポイント用のNumberフィールドを追加する
@@ -120,12 +120,12 @@ https://github.com/users/ringowasabi/projects/1
 - [x] 各Issueの本文を、Issueごとの具体的な実装内容・完了条件に修正する
 - [x] `Railsアプリの土台を準備する` を、トップページ実装・Renderデプロイより前に配置する
 
-## GitHub Projectsの作成結果
+## GitHub Projectsの設定結果
 
 - Projects URL：https://github.com/users/ringowasabi/projects/1
 - 提出用Issue URL：https://github.com/ringowasabi/-graduation_app/issues/26
 - 公開設定：Public
-- 作成済みIssue数：22件
+- 登録済みIssue数：22件
 - 追加済みフィールド
   - ストーリーポイント（Number）
   - 開発週（Single select）
