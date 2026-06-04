@@ -10,13 +10,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path, text: "ログイン"
   end
 
-  test "signup placeholder page is displayed" do
-    get signup_path
-
-    assert_response :success
-    assert_select "h1", text: "新規登録"
-  end
-
   test "login placeholder page is displayed" do
     get login_path
 

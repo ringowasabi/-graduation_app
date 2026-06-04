@@ -17,6 +17,13 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <% alert_class = type.to_sym == :notice ? "alert-success" : "alert-danger" %>
+      <div class="container pt-3">
+        <div class="alert <%= alert_class %> mb-0" role="alert"><%= message %></div>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
