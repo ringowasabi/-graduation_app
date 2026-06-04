@@ -1,7 +1,13 @@
 class TransportationMemosController < ApplicationController
   before_action :require_login
 
-  def index; end
+  def index
+    @transportation_memos = TravelExpenseMemo
+                             .joins(:destination)
+                             .includes(:destination)
+                             .where(destinations: { user_id: current_user.id })
+                             .order(created_at: :desc)
+  end
 
   def new
     @transportation_memo = TravelExpenseMemo.new

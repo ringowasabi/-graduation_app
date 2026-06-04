@@ -42,4 +42,8 @@ class TravelExpenseMemoTest < ActiveSupport::TestCase
     assert_equal "池袋", memo.departure_place
     assert_equal "新宿", memo.arrival_place
   end
+
+  test "returns round trip fare from one way fare" do
+    assert_equal 900, travel_expense_memos(:shibuya_route).round_trip_fare
+  end
 end

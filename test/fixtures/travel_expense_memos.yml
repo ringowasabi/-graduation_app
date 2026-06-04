@@ -3,3 +3,9 @@ shibuya_route:
   departure_place: 新宿
   arrival_place: 渋谷
   one_way_fare: 450
+
+other_route:
+  destination: other_activity_place
+  departure_place: 池袋
+  arrival_place: 上野
+  one_way_fare: 320

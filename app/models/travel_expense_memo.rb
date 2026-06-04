@@ -7,6 +7,10 @@ class TravelExpenseMemo < ApplicationRecord
 
   before_validation :normalize_places
 
+  def round_trip_fare
+    one_way_fare.to_i * 2
+  end
+
   private
 
   def normalize_places
