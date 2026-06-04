@@ -12,7 +12,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   test "top page displays logged in navigation" do
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "password123"
     }
 

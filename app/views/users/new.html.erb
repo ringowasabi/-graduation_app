@@ -7,7 +7,7 @@
     </div>
 
     <h1 class="h3 fw-bold mb-2">新規登録</h1>
-    <p class="text-secondary mb-4">訪問先の交通費を保存するためのアカウントを作成します。</p>
+    <p class="text-secondary mb-4">名前とあいことばで、交通費メモ用のアカウントを作成します。</p>
 
     <% if @user.errors.any? %>
       <div class="alert alert-danger" role="alert">
@@ -27,18 +27,13 @@
       </div>
 
       <div class="mb-3">
-        <%= form.label :email, "メールアドレス", class: "form-label" %>
-        <%= form.email_field :email, class: "form-control", autocomplete: "email" %>
-      </div>
-
-      <div class="mb-3">
-        <%= form.label :password, "パスワード", class: "form-label" %>
+        <%= form.label :password, "あいことば", class: "form-label" %>
         <%= form.password_field :password, class: "form-control", autocomplete: "new-password" %>
         <div class="form-text">8文字以上で入力してください。</div>
       </div>
 
       <div class="mb-4">
-        <%= form.label :password_confirmation, "パスワード確認", class: "form-label" %>
+        <%= form.label :password_confirmation, "あいことば確認", class: "form-label" %>
         <%= form.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
       </div>
 

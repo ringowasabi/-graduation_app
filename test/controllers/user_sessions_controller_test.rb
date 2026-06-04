@@ -7,11 +7,15 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "ログイン"
     assert_select "form[action=?][method=?]", login_path, "post"
+    assert_select "label", "名前"
+    assert_select "label", "あいことば"
+    assert_select "input[name=?]", "name"
+    assert_select "input[name=?]", "password"
   end
 
   test "logs in with valid credentials" do
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "password123"
     }
 
@@ -26,18 +30,18 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "does not log in with invalid credentials" do
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "wrongpassword"
     }
 
     assert_response :unprocessable_entity
     assert_nil session[:user_id]
-    assert_select ".alert", /メールアドレスまたはパスワードが正しくありません/
+    assert_select ".alert", /名前またはあいことばが正しくありません/
   end
 
   test "logs out current user" do
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "password123"
     }
     assert_equal users(:kaori).id.to_s, session[:user_id]

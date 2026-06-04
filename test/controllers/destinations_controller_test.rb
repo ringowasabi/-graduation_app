@@ -53,7 +53,7 @@ class DestinationsControllerTest < ActionDispatch::IntegrationTest
 
   def login_as_kaori
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "password123"
     }
   end

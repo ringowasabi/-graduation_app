@@ -257,7 +257,7 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
 
   def login_as_kaori
     post login_path, params: {
-      email: users(:kaori).email,
+      name: users(:kaori).name,
       password: "password123"
     }
   end
@@ -266,7 +266,7 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     travel_expense_memos(:other_route).destroy!
 
     post login_path, params: {
-      email: users(:hanako).email,
+      name: users(:hanako).name,
       password: "password123"
     }
   end
