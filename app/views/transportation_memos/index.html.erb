@@ -3,7 +3,7 @@
 <%= render "shared/header" %>
 
 <div class="container py-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
     <div>
       <p class="text-primary fw-bold mb-1">交通費メモ</p>
       <h1 class="h3 fw-bold mb-0">交通費メモ一覧</h1>
@@ -12,7 +12,7 @@
   </div>
 
   <% if @transportation_memos.any? %>
-    <div class="table-responsive border rounded-3 bg-white">
+    <div class="table-responsive border rounded-3 bg-white d-none d-md-block">
       <table class="table align-middle mb-0">
         <thead class="table-light">
           <tr>
@@ -43,6 +43,38 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+
+    <div class="d-grid gap-3 d-md-none">
+      <% @transportation_memos.each do |memo| %>
+        <div class="border rounded-3 p-3 bg-white">
+          <div class="d-flex justify-content-between gap-3 mb-3">
+            <div>
+              <p class="text-secondary small mb-1">訪問先</p>
+              <h2 class="h5 fw-bold mb-0"><%= memo.destination.name %></h2>
+            </div>
+            <div class="text-end">
+              <p class="text-secondary small mb-1">往復料金</p>
+              <p class="h5 fw-bold text-primary mb-0"><%= number_to_currency(memo.round_trip_fare, unit: "円", precision: 0, format: "%n%u") %></p>
+            </div>
+          </div>
+
+          <dl class="row mb-3">
+            <dt class="col-5 text-secondary">出発地</dt>
+            <dd class="col-7 mb-2"><%= memo.departure_place %></dd>
+            <dt class="col-5 text-secondary">到着地</dt>
+            <dd class="col-7 mb-2"><%= memo.arrival_place %></dd>
+            <dt class="col-5 text-secondary">片道料金</dt>
+            <dd class="col-7 mb-0"><%= number_to_currency(memo.one_way_fare, unit: "円", precision: 0, format: "%n%u") %></dd>
+          </dl>
+
+          <div class="d-grid gap-2">
+            <%= link_to "詳細", transportation_memo_path(memo), class: "btn btn-outline-primary" %>
+            <%= link_to "編集", edit_transportation_memo_path(memo), class: "btn btn-outline-secondary" %>
+            <%= link_to "削除", transportation_memo_path(memo), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "交通費メモを削除しますか？" } %>
+          </div>
+        </div>
+      <% end %>
     </div>
   <% else %>
     <div class="border rounded-3 p-4 bg-light">
