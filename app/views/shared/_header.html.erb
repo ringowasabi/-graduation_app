@@ -7,7 +7,7 @@
         <%= link_to "交通費メモ一覧", transportation_memos_path, class: "btn btn-outline-primary" %>
         <%= link_to "交通費メモ登録", new_transportation_memo_path, class: "btn btn-outline-primary" %>
         <%= link_to "訪問先登録", new_destination_path, class: "btn btn-outline-primary" %>
-        <%= link_to "ログアウト", logout_path, class: "btn btn-primary", data: { turbo_method: :delete } %>
+        <%= button_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
       <% else %>
         <%= link_to "ログイン", login_path, class: "btn btn-outline-primary" %>
         <%= link_to "新規登録", signup_path, class: "btn btn-primary" %>

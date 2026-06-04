@@ -19,6 +19,8 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select "h1", "交通費メモ一覧"
+    assert_select "form[action=?][method=?]", logout_path, "post"
+    assert_select "input[name=?][value=?]", "_method", "delete"
     assert_equal users(:kaori).id.to_s, session[:user_id]
   end
 
