@@ -54,6 +54,90 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "edit page displays current user's transportation memo values" do
+    login_as_kaori
+    memo = travel_expense_memos(:shibuya_route)
+
+    get edit_transportation_memo_path(memo)
+
+    assert_response :success
+    assert_select "h1", "交通費メモ編集"
+    assert_select "form[action=?]", transportation_memo_path(memo)
+    assert_select "input[name=?][value=?]", "travel_expense_memo[departure_place]", "新宿"
+    assert_select "input[name=?][value=?]", "travel_expense_memo[arrival_place]", "渋谷"
+    assert_select "input[name=?][value=?]", "travel_expense_memo[one_way_fare]", "450"
+  end
+
+  test "updates transportation memo with valid params" do
+    login_as_kaori
+    memo = travel_expense_memos(:shibuya_route)
+
+    patch transportation_memo_path(memo), params: {
+      travel_expense_memo: {
+        destination_id: destinations(:activity_place).id,
+        departure_place: "池袋",
+        arrival_place: "品川",
+        one_way_fare: 320
+      }
+    }
+
+    assert_redirected_to transportation_memo_path(memo)
+    assert_equal "交通費メモを更新しました。", flash[:notice]
+    memo.reload
+    assert_equal "池袋", memo.departure_place
+    assert_equal "品川", memo.arrival_place
+    assert_equal 320, memo.one_way_fare
+  end
+
+  test "does not update transportation memo with invalid params" do
+    login_as_kaori
+    memo = travel_expense_memos(:shibuya_route)
+
+    patch transportation_memo_path(memo), params: {
+      travel_expense_memo: {
+        destination_id: destinations(:activity_place).id,
+        departure_place: "",
+        arrival_place: "",
+        one_way_fare: ""
+      }
+    }
+
+    assert_response :unprocessable_entity
+    assert_select ".alert", /入力内容を確認してください/
+    memo.reload
+    assert_equal "新宿", memo.departure_place
+    assert_equal "渋谷", memo.arrival_place
+    assert_equal 450, memo.one_way_fare
+  end
+
+  test "does not edit another user's transportation memo" do
+    login_as_kaori
+
+    get edit_transportation_memo_path(travel_expense_memos(:other_route))
+
+    assert_response :not_found
+  end
+
+  test "does not update another user's transportation memo" do
+    login_as_kaori
+    memo = travel_expense_memos(:other_route)
+
+    patch transportation_memo_path(memo), params: {
+      travel_expense_memo: {
+        destination_id: destinations(:activity_place).id,
+        departure_place: "横浜",
+        arrival_place: "川崎",
+        one_way_fare: 999
+      }
+    }
+
+    assert_response :not_found
+    memo.reload
+    assert_equal "池袋", memo.departure_place
+    assert_equal "上野", memo.arrival_place
+    assert_equal 320, memo.one_way_fare
+  end
+
   test "redirects guest from new page to login page" do
     get new_transportation_memo_path
 
