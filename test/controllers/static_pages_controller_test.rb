@@ -20,6 +20,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "a[href=?]", transportation_memos_path, text: "交通費メモ一覧"
-    assert_select "a[href=?]", logout_path, text: "ログアウト"
+    assert_select "form[action=?][method=?]", logout_path, "post"
+    assert_select "input[name=?][value=?]", "_method", "delete"
   end
 end
