@@ -9,4 +9,17 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", signup_path, text: "新規登録"
     assert_select "a[href=?]", login_path, text: "ログイン"
   end
+
+  test "top page displays logged in navigation" do
+    post login_path, params: {
+      email: users(:kaori).email,
+      password: "password123"
+    }
+
+    get root_path
+
+    assert_response :success
+    assert_select "a[href=?]", transportation_memos_path, text: "交通費メモ一覧"
+    assert_select "a[href=?]", logout_path, text: "ログアウト"
+  end
 end
