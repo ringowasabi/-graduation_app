@@ -244,6 +244,9 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "h1", "登録完了！今日の営業もがんばりましょう！"
+    assert_select ".completion-message-card[role=?]", "img"
+    assert_select "a[href=?]", transportation_memos_path, text: "一覧へ戻る"
+    assert_select "a[href=?]", new_transportation_memo_path, text: "続けて登録する"
   end
 
   private
