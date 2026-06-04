@@ -7,6 +7,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "新規登録"
     assert_select "form[action=?][method=?]", users_path, "post"
+    assert_select "label", "名前"
+    assert_select "label", "あいことば"
+    assert_select "label", "あいことば確認"
+    assert_select "input[name=?]", "user[email]", count: 0
   end
 
   test "creates user with valid params" do
@@ -14,7 +18,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_path, params: {
         user: {
           name: "山田太郎",
-          email: "taro@example.com",
           password: "password123",
           password_confirmation: "password123"
         }
@@ -25,12 +28,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "ユーザー登録が完了しました。ログインしてください。", flash[:notice]
   end
 
-  test "does not create user with duplicate email" do
+  test "does not create user with duplicate name" do
     assert_no_difference "User.count" do
       post users_path, params: {
         user: {
-          name: "重複ユーザー",
-          email: users(:kaori).email,
+          name: users(:kaori).name,
           password: "password123",
           password_confirmation: "password123"
         }
@@ -46,7 +48,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post users_path, params: {
         user: {
           name: "",
-          email: "",
           password: "",
           password_confirmation: ""
         }

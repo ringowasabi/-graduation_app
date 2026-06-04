@@ -7,16 +7,16 @@
     </div>
 
     <h1 class="h3 fw-bold mb-2">ログイン</h1>
-    <p class="text-secondary mb-4">登録したメールアドレスとパスワードでログインします。</p>
+    <p class="text-secondary mb-4">登録した名前とあいことばでログインします。</p>
 
     <%= form_with url: login_path, local: true do |form| %>
       <div class="mb-3">
-        <%= form.label :email, "メールアドレス", class: "form-label" %>
-        <%= form.email_field :email, value: params[:email], class: "form-control", autocomplete: "email" %>
+        <%= form.label :name, "名前", class: "form-label" %>
+        <%= form.text_field :name, value: params[:name], class: "form-control", autocomplete: "username" %>
       </div>
 
       <div class="mb-4">
-        <%= form.label :password, "パスワード", class: "form-label" %>
+        <%= form.label :password, "あいことば", class: "form-label" %>
         <%= form.password_field :password, class: "form-control", autocomplete: "current-password" %>
       </div>
 
