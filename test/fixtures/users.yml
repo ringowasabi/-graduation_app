@@ -1,0 +1,5 @@
+kaori:
+  name: かおり
+  email: kaori@example.com
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password123", "salt") %>
+  salt: salt
