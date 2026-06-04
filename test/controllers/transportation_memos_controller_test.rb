@@ -1,6 +1,34 @@
 require "test_helper"
 
 class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
+  test "index page displays only current user's transportation memos" do
+    login_as_kaori
+
+    get transportation_memos_path
+
+    assert_response :success
+    assert_select "h1", "交通費メモ一覧"
+    assert_select "td", destinations(:activity_place).name
+    assert_select "td", "新宿"
+    assert_select "td", "渋谷"
+    assert_select "td", "450円"
+    assert_select "td", "900円"
+    assert_no_match destinations(:other_activity_place).name, response.body
+    assert_select "a[href=?]", new_transportation_memo_path
+    assert_select "a[href=?]", transportation_memo_path(travel_expense_memos(:shibuya_route))
+    assert_select "a[href=?]", edit_transportation_memo_path(travel_expense_memos(:shibuya_route))
+  end
+
+  test "index page displays empty state" do
+    login_as_hanako_without_memos
+
+    get transportation_memos_path
+
+    assert_response :success
+    assert_select "p", /交通費メモはまだ登録されていません/
+    assert_select "a[href=?]", new_transportation_memo_path
+  end
+
   test "redirects guest from new page to login page" do
     get new_transportation_memo_path
 
@@ -90,6 +118,15 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
   def login_as_kaori
     post login_path, params: {
       email: users(:kaori).email,
+      password: "password123"
+    }
+  end
+
+  def login_as_hanako_without_memos
+    travel_expense_memos(:other_route).destroy!
+
+    post login_path, params: {
+      email: users(:hanako).email,
       password: "password123"
     }
   end

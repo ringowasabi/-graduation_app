@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   delete "logout" => "user_sessions#destroy", as: :logout
   resources :destinations, only: %i[new create]
   get "transportation_memos/completion" => "transportation_memos#completion", as: :transportation_memo_completion
-  resources :transportation_memos, only: %i[index new create]
+  resources :transportation_memos, only: %i[index new create show edit update destroy]
 
   # Defines the root path route ("/")
   root "static_pages#top"

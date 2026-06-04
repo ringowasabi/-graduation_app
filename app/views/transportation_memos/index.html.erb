@@ -8,10 +8,47 @@
       <p class="text-primary fw-bold mb-1">交通費メモ</p>
       <h1 class="h3 fw-bold mb-0">交通費メモ一覧</h1>
     </div>
+    <%= link_to "交通費メモを登録", new_transportation_memo_path, class: "btn btn-primary" %>
   </div>
 
-  <div class="border rounded-3 p-4 bg-light">
-    <p class="mb-2 fw-bold">ログイン後の確認用ページです。</p>
-    <p class="text-secondary mb-0">交通費メモの一覧表示機能は後続Issueで実装します。</p>
-  </div>
+  <% if @transportation_memos.any? %>
+    <div class="table-responsive border rounded-3 bg-white">
+      <table class="table align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>訪問先</th>
+            <th>出発地</th>
+            <th>到着地</th>
+            <th class="text-end">片道料金</th>
+            <th class="text-end">往復料金</th>
+            <th class="text-end">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transportation_memos.each do |memo| %>
+            <tr>
+              <td class="fw-bold"><%= memo.destination.name %></td>
+              <td><%= memo.departure_place %></td>
+              <td><%= memo.arrival_place %></td>
+              <td class="text-end"><%= number_to_currency(memo.one_way_fare, unit: "円", precision: 0, format: "%n%u") %></td>
+              <td class="text-end"><%= number_to_currency(memo.round_trip_fare, unit: "円", precision: 0, format: "%n%u") %></td>
+              <td class="text-end">
+                <div class="d-inline-flex gap-2">
+                  <%= link_to "詳細", transportation_memo_path(memo), class: "btn btn-sm btn-outline-primary" %>
+                  <%= link_to "編集", edit_transportation_memo_path(memo), class: "btn btn-sm btn-outline-secondary" %>
+                  <%= link_to "削除", transportation_memo_path(memo), class: "btn btn-sm btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "交通費メモを削除しますか？" } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="border rounded-3 p-4 bg-light">
+      <p class="mb-2 fw-bold">交通費メモはまだ登録されていません。</p>
+      <p class="text-secondary mb-3">訪問先、出発地、到着地、片道料金を登録して、外回り前にすぐ確認できるようにしましょう。</p>
+      <%= link_to "交通費メモを登録", new_transportation_memo_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
