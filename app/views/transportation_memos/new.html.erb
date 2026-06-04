@@ -1,0 +1,64 @@
+<% content_for :title, "交通費メモ登録" %>
+
+<%= render "shared/header" %>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="mb-4">
+        <p class="text-primary fw-bold mb-1">交通費メモ</p>
+        <h1 class="h3 fw-bold mb-0">交通費メモ登録</h1>
+      </div>
+
+      <% if flash.now[:alert].present? %>
+        <div class="alert alert-danger"><%= flash.now[:alert] %></div>
+      <% end %>
+
+      <% if @transportation_memo.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            <% @transportation_memo.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @destinations.empty? %>
+        <div class="alert alert-warning">
+          交通費メモを登録する前に、訪問先を登録してください。
+          <%= link_to "訪問先登録へ", new_destination_path, class: "alert-link" %>
+        </div>
+      <% end %>
+
+      <div class="border rounded-3 p-4 bg-white">
+        <%= form_with model: @transportation_memo, url: transportation_memos_path, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :destination_id, "訪問先", class: "form-label fw-bold" %>
+            <%= f.collection_select :destination_id, @destinations, :id, :name, { prompt: "選択してください" }, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :departure_place, "出発地", class: "form-label fw-bold" %>
+            <%= f.text_field :departure_place, class: "form-control", placeholder: "例：新宿" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :arrival_place, "到着地", class: "form-label fw-bold" %>
+            <%= f.text_field :arrival_place, class: "form-control", placeholder: "例：渋谷" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :one_way_fare, "片道料金", class: "form-label fw-bold" %>
+            <div class="input-group">
+              <%= f.number_field :one_way_fare, class: "form-control", min: 1, step: 1, placeholder: "例：450" %>
+              <span class="input-group-text">円</span>
+            </div>
+          </div>
+
+          <%= f.submit "登録する", class: "btn btn-primary", disabled: @destinations.empty? %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

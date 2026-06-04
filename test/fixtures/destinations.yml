@@ -1,3 +1,7 @@
 activity_place:
   user: kaori
   name: 活動先A
+
+other_activity_place:
+  user: hanako
+  name: 活動先C
