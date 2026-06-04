@@ -138,6 +138,27 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_equal 320, memo.one_way_fare
   end
 
+  test "destroys current user's transportation memo" do
+    login_as_kaori
+
+    assert_difference "TravelExpenseMemo.count", -1 do
+      delete transportation_memo_path(travel_expense_memos(:shibuya_route))
+    end
+
+    assert_redirected_to transportation_memos_path
+    assert_equal "交通費メモを削除しました。", flash[:notice]
+  end
+
+  test "does not destroy another user's transportation memo" do
+    login_as_kaori
+
+    assert_no_difference "TravelExpenseMemo.count" do
+      delete transportation_memo_path(travel_expense_memos(:other_route))
+    end
+
+    assert_response :not_found
+  end
+
   test "redirects guest from new page to login page" do
     get new_transportation_memo_path
 
