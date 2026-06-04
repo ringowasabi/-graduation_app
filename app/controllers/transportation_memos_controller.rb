@@ -1,5 +1,6 @@
 class TransportationMemosController < ApplicationController
   before_action :require_login
+  before_action :set_transportation_memo, only: %i[show]
 
   def index
     @transportation_memos = TravelExpenseMemo
@@ -8,6 +9,8 @@ class TransportationMemosController < ApplicationController
                              .where(destinations: { user_id: current_user.id })
                              .order(created_at: :desc)
   end
+
+  def show; end
 
   def new
     @transportation_memo = TravelExpenseMemo.new
@@ -52,5 +55,13 @@ class TransportationMemosController < ApplicationController
     set_destinations
     flash.now[:alert] = "入力内容を確認してください。"
     render :new, status: :unprocessable_entity
+  end
+
+  def set_transportation_memo
+    @transportation_memo = TravelExpenseMemo
+                           .joins(:destination)
+                           .includes(:destination)
+                           .where(destinations: { user_id: current_user.id })
+                           .find(params[:id])
   end
 end

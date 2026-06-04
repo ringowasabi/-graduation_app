@@ -29,6 +29,31 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", new_transportation_memo_path
   end
 
+  test "show page displays current user's transportation memo" do
+    login_as_kaori
+    memo = travel_expense_memos(:shibuya_route)
+
+    get transportation_memo_path(memo)
+
+    assert_response :success
+    assert_select "h1", "交通費メモ詳細"
+    assert_select "dd", destinations(:activity_place).name
+    assert_select "dd", "新宿"
+    assert_select "dd", "渋谷"
+    assert_select "dd", "450円"
+    assert_select "dd", "900円"
+    assert_select "a[href=?]", edit_transportation_memo_path(memo)
+    assert_select "a[href=?]", transportation_memos_path
+  end
+
+  test "does not show another user's transportation memo" do
+    login_as_kaori
+
+    get transportation_memo_path(travel_expense_memos(:other_route))
+
+    assert_response :not_found
+  end
+
   test "redirects guest from new page to login page" do
     get new_transportation_memo_path
 
