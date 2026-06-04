@@ -46,4 +46,8 @@ class TravelExpenseMemoTest < ActiveSupport::TestCase
   test "returns round trip fare from one way fare" do
     assert_equal 900, travel_expense_memos(:shibuya_route).round_trip_fare
   end
+
+  test "does not have round trip fare column" do
+    assert_not_includes TravelExpenseMemo.column_names, "round_trip_fare"
+  end
 end
