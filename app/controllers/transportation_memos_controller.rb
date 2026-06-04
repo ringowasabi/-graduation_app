@@ -1,6 +1,6 @@
 class TransportationMemosController < ApplicationController
   before_action :require_login
-  before_action :set_transportation_memo, only: %i[show]
+  before_action :set_transportation_memo, only: %i[show edit update]
 
   def index
     @transportation_memos = TravelExpenseMemo
@@ -14,6 +14,10 @@ class TransportationMemosController < ApplicationController
 
   def new
     @transportation_memo = TravelExpenseMemo.new
+    set_destinations
+  end
+
+  def edit
     set_destinations
   end
 
@@ -31,6 +35,23 @@ class TransportationMemosController < ApplicationController
         redirect_to transportation_memo_completion_path, notice: "交通費メモを登録しました。"
       else
         render_new_with_error
+      end
+    end
+  end
+
+  def update
+    destination = current_user.destinations.find_by(id: transportation_memo_params[:destination_id])
+
+    if destination.nil?
+      @transportation_memo.errors.add(:destination, "を選択してください")
+      render_edit_with_error
+    else
+      @transportation_memo.destination = destination
+
+      if @transportation_memo.update(memo_attributes)
+        redirect_to transportation_memo_path(@transportation_memo), notice: "交通費メモを更新しました。"
+      else
+        render_edit_with_error
       end
     end
   end
@@ -55,6 +76,12 @@ class TransportationMemosController < ApplicationController
     set_destinations
     flash.now[:alert] = "入力内容を確認してください。"
     render :new, status: :unprocessable_entity
+  end
+
+  def render_edit_with_error
+    set_destinations
+    flash.now[:alert] = "入力内容を確認してください。"
+    render :edit, status: :unprocessable_entity
   end
 
   def set_transportation_memo
