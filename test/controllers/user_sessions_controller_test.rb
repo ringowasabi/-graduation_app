@@ -32,4 +32,18 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
     assert_nil session[:user_id]
     assert_select ".alert", /メールアドレスまたはパスワードが正しくありません/
   end
+
+  test "logs out current user" do
+    post login_path, params: {
+      email: users(:kaori).email,
+      password: "password123"
+    }
+    assert_equal users(:kaori).id.to_s, session[:user_id]
+
+    delete logout_path
+
+    assert_redirected_to root_path
+    assert_nil session[:user_id]
+    assert_equal "ログアウトしました。", flash[:notice]
+  end
 end
