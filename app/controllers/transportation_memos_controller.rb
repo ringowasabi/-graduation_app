@@ -1,6 +1,6 @@
 class TransportationMemosController < ApplicationController
   before_action :require_login
-  before_action :set_transportation_memo, only: %i[show edit update]
+  before_action :set_transportation_memo, only: %i[show edit update destroy]
 
   def index
     @transportation_memos = TravelExpenseMemo
@@ -54,6 +54,11 @@ class TransportationMemosController < ApplicationController
         render_edit_with_error
       end
     end
+  end
+
+  def destroy
+    @transportation_memo.destroy!
+    redirect_to transportation_memos_path, notice: "交通費メモを削除しました。"
   end
 
   def completion; end
