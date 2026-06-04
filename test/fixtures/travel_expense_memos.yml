@@ -1,0 +1,5 @@
+shibuya_route:
+  destination: activity_place
+  departure_place: 新宿
+  arrival_place: 渋谷
+  one_way_fare: 450

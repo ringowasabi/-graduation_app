@@ -1,5 +1,6 @@
 class Destination < ApplicationRecord
   belongs_to :user
+  has_many :travel_expense_memos, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: { scope: :user_id }
 

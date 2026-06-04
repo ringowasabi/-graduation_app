@@ -5,6 +5,7 @@
     <div class="ms-auto d-flex gap-2">
       <% if logged_in? %>
         <%= link_to "交通費メモ一覧", transportation_memos_path, class: "btn btn-outline-primary" %>
+        <%= link_to "交通費メモ登録", new_transportation_memo_path, class: "btn btn-outline-primary" %>
         <%= link_to "訪問先登録", new_destination_path, class: "btn btn-outline-primary" %>
         <%= link_to "ログアウト", logout_path, class: "btn btn-primary", data: { turbo_method: :delete } %>
       <% else %>
