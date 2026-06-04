@@ -1,0 +1,53 @@
+<% content_for :title, "訪問先登録" %>
+
+<%= render "shared/header" %>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="mb-4">
+        <p class="text-primary fw-bold mb-1">訪問先</p>
+        <h1 class="h3 fw-bold mb-0">訪問先登録</h1>
+      </div>
+
+      <% if flash.now[:alert].present? %>
+        <div class="alert alert-danger"><%= flash.now[:alert] %></div>
+      <% end %>
+
+      <% if @destination.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            <% @destination.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="border rounded-3 p-4 bg-white mb-4">
+        <%= form_with model: @destination, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :name, "訪問先名", class: "form-label fw-bold" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "例：活動先A" %>
+          </div>
+
+          <%= f.submit "登録する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+      <div class="border rounded-3 p-4 bg-light">
+        <h2 class="h5 fw-bold mb-3">登録済みの訪問先</h2>
+
+        <% if @destinations.any? %>
+          <ul class="list-group list-group-flush">
+            <% @destinations.each do |destination| %>
+              <li class="list-group-item bg-light px-0"><%= destination.name %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-secondary mb-0">まだ訪問先が登録されていません。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

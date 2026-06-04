@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "login" => "user_sessions#new", as: :login
   post "login" => "user_sessions#create"
   delete "logout" => "user_sessions#destroy", as: :logout
+  resources :destinations, only: %i[new create]
   resources :transportation_memos, only: %i[index]
 
   # Defines the root path route ("/")
