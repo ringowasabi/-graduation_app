@@ -1,0 +1,29 @@
+<% content_for :title, "ログイン" %>
+
+<div class="container py-5">
+  <div class="mx-auto" style="max-width: 520px;">
+    <div class="mb-4">
+      <%= link_to "いつもの交通費メモ", root_path, class: "text-decoration-none fw-bold text-dark" %>
+    </div>
+
+    <h1 class="h3 fw-bold mb-2">ログイン</h1>
+    <p class="text-secondary mb-4">登録したメールアドレスとパスワードでログインします。</p>
+
+    <%= form_with url: login_path, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :email, "メールアドレス", class: "form-label" %>
+        <%= form.email_field :email, value: params[:email], class: "form-control", autocomplete: "email" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :password, "パスワード", class: "form-label" %>
+        <%= form.password_field :password, class: "form-control", autocomplete: "current-password" %>
+      </div>
+
+      <div class="d-grid gap-3">
+        <%= form.submit "ログインする", class: "btn btn-primary btn-lg" %>
+        <%= link_to "新規登録はこちら", signup_path, class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

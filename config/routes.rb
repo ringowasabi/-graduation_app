@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   get "signup" => "users#new", as: :signup
   resources :users, only: %i[new create]
-  get "login" => "static_pages#login", as: :login
+  get "login" => "user_sessions#new", as: :login
+  post "login" => "user_sessions#create"
+  resources :transportation_memos, only: %i[index]
 
   # Defines the root path route ("/")
   root "static_pages#top"
