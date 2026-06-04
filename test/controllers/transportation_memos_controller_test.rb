@@ -87,6 +87,9 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_equal "池袋", memo.departure_place
     assert_equal "品川", memo.arrival_place
     assert_equal 320, memo.one_way_fare
+
+    follow_redirect!
+    assert_select "dd", "640円"
   end
 
   test "does not update transportation memo with invalid params" do
