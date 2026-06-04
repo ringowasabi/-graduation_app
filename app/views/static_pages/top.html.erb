@@ -14,8 +14,13 @@
             片道料金と往復料金をすぐ確認できるアプリです。
           </p>
           <div class="d-flex flex-column flex-sm-row gap-3">
-            <%= link_to "交通費メモをはじめる", signup_path, class: "btn btn-primary btn-lg" %>
-            <%= link_to "ログインする", login_path, class: "btn btn-outline-primary btn-lg" %>
+            <% if logged_in? %>
+              <%= link_to "交通費メモを登録する", new_transportation_memo_path, class: "btn btn-primary btn-lg" %>
+              <%= link_to "交通費メモ一覧を見る", transportation_memos_path, class: "btn btn-outline-primary btn-lg" %>
+            <% else %>
+              <%= link_to "交通費メモをはじめる", signup_path, class: "btn btn-primary btn-lg" %>
+              <%= link_to "ログインする", login_path, class: "btn btn-outline-primary btn-lg" %>
+            <% end %>
           </div>
         </div>
         <div class="col-lg-5">
@@ -43,19 +48,19 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <div class="h-100 border rounded p-4">
+          <div class="h-100 border rounded p-4 bg-white">
             <h2 class="h5 fw-bold">交通費だけを保存</h2>
             <p class="text-secondary mb-0">訪問先、出発地、到着地、片道料金を交通費メモとして管理できます。</p>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="h-100 border rounded p-4">
+          <div class="h-100 border rounded p-4 bg-white">
             <h2 class="h5 fw-bold">往復料金を自動表示</h2>
             <p class="text-secondary mb-0">片道料金を登録すると、往復料金をすぐ確認できます。</p>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="h-100 border rounded p-4">
+          <div class="h-100 border rounded p-4 bg-white">
             <h2 class="h5 fw-bold">営業前に前向きに</h2>
             <p class="text-secondary mb-0">登録完了後に応援メッセージを表示し、外回り前の気持ちを支えます。</p>
           </div>

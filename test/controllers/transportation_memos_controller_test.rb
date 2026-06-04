@@ -17,6 +17,8 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", new_transportation_memo_path
     assert_select "a[href=?]", transportation_memo_path(travel_expense_memos(:shibuya_route))
     assert_select "a[href=?]", edit_transportation_memo_path(travel_expense_memos(:shibuya_route))
+    assert_select "form[action=?][method=?]", transportation_memo_path(travel_expense_memos(:shibuya_route)), "post"
+    assert_select "input[name=?][value=?]", "_method", "delete"
   end
 
   test "index page displays empty state" do
@@ -44,6 +46,8 @@ class TransportationMemosControllerTest < ActionDispatch::IntegrationTest
     assert_select "dd", "900円"
     assert_select "a[href=?]", edit_transportation_memo_path(memo)
     assert_select "a[href=?]", transportation_memos_path
+    assert_select "form[action=?][method=?]", transportation_memo_path(memo), "post"
+    assert_select "input[name=?][value=?]", "_method", "delete"
   end
 
   test "does not show another user's transportation memo" do
